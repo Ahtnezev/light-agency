@@ -19,7 +19,7 @@ use function helpers\get_navbar;
     <main class="container my-5">
         <div class="col-12">
             <h1 class="display-6 mb-4">Información del producto</h1>
-            <p class="text-muted">Visto <?= (int)$product['views'] ?> veces</p>
+            <p class="text-muted">Este producto ha sido visto: <?= (int)$product['views'] ?> veces</p>
         </div>
         <div class="row">
             <div class="col-12 col-md-8">

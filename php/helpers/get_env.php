@@ -1,7 +1,7 @@
 <?php
 namespace helpers;
 
-function env($key, $default = null) {
-    $value = getenv($key);
-    return $value !== false ? $value : $default;
+function env(string $key, $default = null)
+{
+    return $_ENV[$key] ?? $default;
 }
