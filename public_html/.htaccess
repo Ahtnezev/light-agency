@@ -1,0 +1,22 @@
+# Usar mod_rewrite si está disponible
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Bloquear acceso directo a carpetas protegidas
+  RewriteRule ^php/ - [F,L]
+  RewriteRule ^assets/Install/ - [F,L]
+
+  # Opcional: redireccionar todo lo que no sea archivo físico a index.php
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# Omitir errores en server
+php_flag display_errors Off
+
+# Proteger archivos sensibles
+<FilesMatch "\.(env|sql|json|md|lock|gitignore|htaccess)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>

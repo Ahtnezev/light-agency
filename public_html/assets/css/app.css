@@ -1,0 +1,40 @@
+/* colors */
+@import url('./childs/colors.css');
+/* alert */
+@import url('./childs/alert.css');
+/* card */
+@import url('./childs/card.css');
+/* navbar */
+@import url('./childs/navbar.css');
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+    background-color: var(--body-bg);
+}
+
+/* general */
+.pagination {
+    .active>.page-link, .page-link.active  {
+        border-color: var(--main);
+    }
+}
+.main_404 {
+    height: calc(100vh - 100px);
+
+    .title {
+        width: 100%;
+    }
+}
+footer {
+    border-top: 2px solid var(--green);
+    border-bottom: 1px solid var(--green);
+}
+
+@media screen and (min-width: 576px) {
+    .card,  .comments-container {
+        margin: auto;
+        max-width: 420px;
+    }
+}
+
+/* @media screen and (min-width: 768px) {} */
