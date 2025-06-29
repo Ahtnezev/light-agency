@@ -20,7 +20,7 @@ class Product extends Model
             SELECT
                 p.*,
                 c.name AS category_name
-                FROM products p
+                FROM ".self::$table." p
                 JOIN categories c ON p.category_id = c.id
                 ORDER BY p.views DESC
                 LIMIT :limit OFFSET :offset
@@ -33,6 +33,59 @@ class Product extends Model
     }
 
     /**
+     * Get featured products
+     * @return array
+    */
+    public static function featuredPaginated(int $limit = 10, int $page = 1): array {
+        $offset = ($page - 1) * $limit;
+        $pdo = static::getConnection();
+        $stmt = $pdo->prepare("
+            SELECT p.*, c.name AS category_name
+            FROM ".self::$table." p
+            JOIN categories c ON p.category_id = c.id
+            WHERE p.is_featured = 1
+            ORDER BY p.created_at DESC
+            LIMIT :limit OFFSET :offset
+        ");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Get best selling products
+     * @return array
+    */
+    public static function bestSellingPaginated(int $limit = 10, int $page = 1): array {
+        $offset = ($page - 1) * $limit;
+        $pdo = static::getConnection();
+        $stmt = $pdo->prepare("
+            SELECT p.*, c.name AS category_name
+            FROM ".self::$table." p
+            JOIN categories c ON p.category_id = c.id
+            ORDER BY p.views DESC
+            LIMIT :limit OFFSET :offset
+        ");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function countFeatured()
+    {
+        $pdo = static::getConnection();
+        return $pdo->query("SELECT COUNT(*) FROM ".self::$table." WHERE is_featured = 1")->fetchColumn();
+    }
+
+    public static function countBestSelling()
+    {
+        $pdo = static::getConnection();
+        return $pdo->query("SELECT COUNT(*) FROM ".self::$table."")->fetchColumn(); // o con filtro si lo deseas
+    }
+
+    /**
      * Get random products (x2) to display in: "also u could interest"
      * @return array
     */
@@ -40,7 +93,7 @@ class Product extends Model
     {
         $pdo = static::getConnection();
         $limit = (int)$limit;
-        $stmt = $pdo->prepare("SELECT * FROM products WHERE id != ? ORDER BY RAND() LIMIT $limit");
+        $stmt = $pdo->prepare("SELECT * FROM ".self::$table." WHERE id != ? ORDER BY RAND() LIMIT $limit");
         $stmt->execute([$excludeId]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -54,7 +107,7 @@ class Product extends Model
     {
         $pdo = static::getConnection();
         $limit = (int)$limit;
-        $stmt = $pdo->prepare("SELECT * FROM products WHERE model_id IN(
+        $stmt = $pdo->prepare("SELECT * FROM ".self::$table." WHERE model_id IN(
             SELECT id FROM models WHERE name LIKE ? ) OR specs LIKE ? LIMIT $limit");
         $search = '%' . trim($query) . '%';
         $stmt->execute([$search, $search]);
@@ -70,7 +123,7 @@ class Product extends Model
     public static function incrementViews($id) : void
     {
         $pdo = self::getConnection();
-        $stmt = $pdo->prepare("UPDATE products SET views = views + 1 where id = ?");
+        $stmt = $pdo->prepare("UPDATE ".self::$table." SET views = views + 1 where id = ?");
         $stmt->execute([$id]);
     }
 
@@ -85,7 +138,7 @@ class Product extends Model
         $searchTerm = '%' . $query . '%';
 
         $countStmt = $pdo->prepare("
-            SELECT COUNT(*) FROM products 
+            SELECT COUNT(*) FROM ".self::$table." 
             WHERE specs LIKE ? 
             OR model_id IN (
                 SELECT id FROM models WHERE name LIKE ?
@@ -95,7 +148,7 @@ class Product extends Model
         $total = $countStmt->fetchColumn();
 
         $stmt = $pdo->prepare("
-            SELECT * FROM products 
+            SELECT * FROM ".self::$table." 
             WHERE specs LIKE ? 
             OR model_id IN (
                 SELECT id FROM models WHERE name LIKE ?
