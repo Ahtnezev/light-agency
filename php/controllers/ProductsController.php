@@ -55,6 +55,37 @@ class ProductsController {
         }
         include __DIR__ . '/../../public_html/views/products/search-results.php';
     }
+
+    /**
+     * Get products where is_featured is true
+    */
+    public function featured()
+    {
+        $limit = 10;
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $total = Product::countFeatured();
+        $totalPages = ceil($total / $limit);
+        if ($page < 1 || $page > $totalPages) $page = 1;
+
+        $products = Product::featuredPaginated($limit, $page);
+        include __DIR__ . '/../../public_html/views/products/list.php';
+    }
+
+    /**
+     * Get products when views column has a high value
+    */
+    public function bestSelling()
+    {
+        $limit = 10;
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $total = Product::countBestSelling();
+        $totalPages = ceil($total / $limit);
+        if ($page < 1 || $page > $totalPages) $page = 1;
+
+        $products = Product::bestSellingPaginated($limit, $page);
+        include __DIR__ . '/../../public_html/views/products/list.php';
+    }
+
     
     /**
      * @return int

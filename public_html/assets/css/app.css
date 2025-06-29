@@ -16,8 +16,13 @@ section.bg-light {
     background: linear-gradient(to right, #f8f9fa, #e9ecef);
 }
 .pagination {
+    .page-link {
+        color: var(--main);
+    }
     .active>.page-link, .page-link.active  {
         border-color: var(--main);
+        background-color: var(--main);
+        color: var(--white);
     }
 }
 .main_404 {

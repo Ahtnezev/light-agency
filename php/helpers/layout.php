@@ -11,6 +11,10 @@ function get_navbar() {
     include_once(__DIR__ . '/../../public_html/views/partials/navbar.php');
 }
 
+function setTitle(string $value) : string {
+    return ' - ' . ucfirst(trim($value));
+}
+
 function get_footer()
 {
     include_once(__DIR__ . '/../../public_html/views/partials/footer.php');

@@ -9,10 +9,11 @@ use function helpers\get_navbar;
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es-MX">
 
 <head>
     <?php get_header(); ?>
+    <title><?= \helpers\env('APP_TITLE') ?> <?= \helpers\setTitle('resultados') ?></title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
