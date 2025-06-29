@@ -19,7 +19,18 @@ abstract class Model
     }
 
     /**
-     * Get all records form products table
+     * Count all records
+     * @return int
+    */
+    public static function countAll(): int
+    {
+        $pdo = static::getConnection();
+        $stmt = $pdo->query("SELECT COUNT(*) FROM " . static::$table);
+        return (int)$stmt->fetchColumn();
+    }
+
+    /**
+     * Get all records from products table
      * @return array
     */
     public static function all(): array
