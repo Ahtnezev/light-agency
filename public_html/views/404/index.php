@@ -18,7 +18,7 @@ use function helpers\get_navbar;
   <main class="main_404 min-vh-100 d-flex flex-wrap align-items-center justify-content-center">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-md-10 col-lg-11 mx-auto">
+        <div class="col-12 col-md-10 col-lg-11 col-xl-8 mx-auto">
           <section class="px-4">
             <h1 class="display-6 title text-center">Oops!, el contenido que consultaste no se encuentra disponible o ya no existe :(</h1>
             <a href="/" class="btn btn-outline-success d-block w-75 mx-auto mt-4">Regresar al sitio</a>

@@ -16,7 +16,7 @@ use function helpers\get_navbar;
 <body class="d-flex flex-column min-vh-100">
     <?php get_navbar(); ?>
 
-    <main class="container my-5">
+    <main class="container single-product my-5">
         <div class="col-12">
             <h1 class="display-6 mb-4">Información del producto</h1>
             <p class="text-muted">Este producto ha sido visto: <?= (int)$product['views'] ?> veces</p>
@@ -24,7 +24,7 @@ use function helpers\get_navbar;
         <div class="row">
             <div class="col-12 col-md-8">
                 <?php if (!empty($product)): ?>
-                    <article class="card shadow rounded-4 border-0 pt-4">
+                    <article class="card card-product shadow rounded-4 border-0 pt-4">
                         <div class="row g-0">
                             <div class="col-12">
                                 <img src="<?= asset('images/products/' . e($product['image_url'])) ?>" class="img img-fluid rounded-start w-100 h-100 object-fit-cover" alt="<?= e($product['specs']) ?>">
@@ -49,7 +49,7 @@ use function helpers\get_navbar;
                                     <div class="d-flex align-items-center justify-content-between">
                                         <span class="h4 text-primary fw-bold mb-0">$<?= number_format($product['price'], 2) ?> MXN</span>
                                         <a href="/" class="btn btn-outline-success">← Volver</a>
-                                    </div>
+                                    </div> <!-- d-flex -->
                                 </div> <!-- card-body -->
                             </div> <!-- col-12 col-md-6 -->
                         </div> <!-- row -->
@@ -78,8 +78,8 @@ use function helpers\get_navbar;
                         <?php endif; ?>
                     </div>
                     <div class="alert alert-light shadow mt-4">
-                        <strong>¿Por qué elegir este modelo?</strong><br>
-                        Perfecto para estudiantes, profesionales y quienes buscan un rendimiento equilibrado con diseño moderno.
+                        <strong>💡 ¿Por qué elegir este modelo?</strong><br>
+                        ⚡️ Perfecto para estudiantes, profesionales y quienes buscan un rendimiento equilibrado con diseño moderno.
                     </div>
                 </sidebar>
             </div> <!-- col-12 col-md-6 -->
