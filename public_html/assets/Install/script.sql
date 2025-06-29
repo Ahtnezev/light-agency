@@ -66,7 +66,7 @@ CREATE TABLE products (
     deleted_at TIMESTAMP NULL DEFAULT NULL,
     
     FOREIGN KEY (model_id) REFERENCES models(id) ON DELETE CASCADE,
-    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT,
     INDEX (model_id),
     INDEX (category_id)
 );
@@ -88,6 +88,8 @@ CREATE TABLE comments (
 
 -- INTERMEDIO/AVANZADO
 ALTER TABLE products ADD views INT DEFAULT 0 AFTER price;
+-- featured products
+ALTER TABLE products ADD COLUMN is_featured BOOLEAN DEFAULT 0;
 
 -- INTERMEDIO/AVANZADO
 INSERT INTO brands (name, country, website) VALUES
@@ -127,17 +129,17 @@ INSERT INTO categories (id, name, parent_id) VALUES
 (9, 'Smartphones', 8),
 (10, 'Tablets', 8);
 
-INSERT INTO products (model_id, specs, price, views, image_url, category_id) VALUES
-(1, 'Intel i5, 8GB RAM, 256GB SSD, Windows 11', 10500.00, 0, 'compac-pc.png', 3),
-(2, 'Ryzen 5, 16GB RAM, 512GB SSD', 13500.00, 0, 'dell-pc.png', 3),
-(3, 'Intel i3, 4GB RAM, 1TB HDD', 7800.00, 0, 'marca1-pc.png', 4),
-(4, 'Intel i7, RTX 3050, 16GB RAM', 22500.00, 0, 'hp-pc.png', 3),
-(5, 'Full HD, 75Hz, IPS', 2900.00, 0, 'dell4-pc.png', 6),
-(6, 'Bluetooth, compacto, multiplataforma', 800.00, 0, 'marca2-pc.png', 7),
-(7, '10.5", 4GB RAM, 64GB, Android 13', 6500.00, 0, 'marca3-pc.jpeg', 10),
-(8, '128GB, cámara dual, iOS', 18999.00, 0, 'msi-pc.png', 9),
-(9, 'Ryzen 9, 32GB RAM, RTX 4070', 39500.00, 0, 'surface-pc.png', 3),
-(10, 'Ryzen 5, 12GB RAM, SSD 512GB', 9200.00, 0, 'msi-pc.png', 3);
+INSERT INTO products (model_id, specs, price, views, image_url, category_id, is_featured) VALUES
+(1, 'Intel i5, 8GB RAM, 256GB SSD, Windows 11', 10500.00, (FLOOR(RAND() * 999) + 1), 'compac-pc.png', 3, FLOOR(RAND() * 2)),
+(2, 'Ryzen 5, 16GB RAM, 512GB SSD', 13500.00, (FLOOR(RAND() * 999) + 1), 'dell-pc.png', 3, FLOOR(RAND() * 2)),
+(3, 'Intel i3, 4GB RAM, 1TB HDD', 7800.00, (FLOOR(RAND() * 999) + 1), 'marca1-pc.png', 4, FLOOR(RAND() * 2)),
+(4, 'Intel i7, RTX 3050, 16GB RAM', 22500.00, (FLOOR(RAND() * 999) + 1), 'hp-pc.png', 3, FLOOR(RAND() * 2)),
+(5, 'Full HD, 75Hz, IPS', 2900.00, (FLOOR(RAND() * 999) + 1), 'dell4-pc.png', 6, FLOOR(RAND() * 2)),
+(6, 'Bluetooth, compacto, multiplataforma', 800.00, (FLOOR(RAND() * 999) + 1), 'marca2-pc.png', 7, FLOOR(RAND() * 2)),
+(7, '10.5", 4GB RAM, 64GB, Android 13', 6500.00, (FLOOR(RAND() * 999) + 1), 'marca3-pc.jpeg', 10, FLOOR(RAND() * 2)),
+(8, '128GB, cámara dual, iOS', 18999.00, (FLOOR(RAND() * 999) + 1), 'msi-pc.png', 9, FLOOR(RAND() * 2)),
+(9, 'Ryzen 9, 32GB RAM, RTX 4070', 39500.00, (FLOOR(RAND() * 999) + 1), 'surface-pc.png', 3, FLOOR(RAND() * 2)),
+(10, 'Ryzen 5, 12GB RAM, SSD 512GB', 9200.00, (FLOOR(RAND() * 999) + 1), 'msi-pc.png', 3, FLOOR(RAND() * 2));
 
 INSERT INTO comments (product_id, name, content, rating) VALUES
 (1, 'Luis Pérez', 'Excelente rendimiento por su price.', 5),
