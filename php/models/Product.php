@@ -9,6 +9,29 @@ class Product extends Model
 {
     protected static $table = 'products';
 
+     /**
+     * @return array
+    */
+    public static function topSellingWithPagination(int $limit = 10, int $page = 1): array {
+        $offset = ($page - 1) * $limit;
+
+        $pdo = static::getConnection();
+        $stmt = $pdo->prepare("
+            SELECT
+                p.*,
+                c.name AS category_name
+                FROM products p
+                JOIN categories c ON p.category_id = c.id
+                ORDER BY p.views DESC
+                LIMIT :limit OFFSET :offset
+        ");
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /**
      * Get random products (x2) to display in: "also u could interest"
      * @return array

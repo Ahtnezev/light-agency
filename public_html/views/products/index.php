@@ -52,6 +52,25 @@ $products = $products ?? []; ?>
             </article>
         </div>
     <?php } ?>
+    <?php if ($totalPages > 1): ?>
+        <nav>
+            <ul class="pagination justify-content-end">
+                <?php if ($page > 1): ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?= $page - 1 ?>">Anterior</a></li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?= $page === $i ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <?php if ($page < $totalPages): ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Siguiente</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    <?php endif; ?>
 <?php } else { ?>
     <div class="alert alert-modern mb-4">
         <!-- <button class="alert-close" onclick="this.parentElement.style.display='none'">
