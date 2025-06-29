@@ -8,7 +8,7 @@ $sql = file_get_contents(__DIR__ . '/../public_html/assets/Install/script.sql');
 
 try {
     $pdo->exec($sql);
-    echo "✅ Base de datos inicializada correctamente.";
+    echo "Base de datos inicializada correctamente.";
 } catch (PDOException $e) {
-    echo "❌ Error al ejecutar script.sql: " . $e->getMessage();
+    echo "Error al ejecutar script.sql: " . $e->getMessage();
 }

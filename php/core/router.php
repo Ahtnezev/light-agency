@@ -1,5 +1,7 @@
 <?php
 namespace core;
+
+use controllers\CategoriesController;
 use controllers\ProductsController;
 
 class Router {
@@ -31,6 +33,15 @@ class Router {
                 include __DIR__ . '/../../public_html/views/products/not-found.php';
                 return;
             }
+            break;
+        case 'featured':
+            $controller = new ProductsController();
+            $controller->featured();
+            break;
+
+        case 'best-selling':
+            $controller = new ProductsController();
+            $controller->bestSelling();
             break;
         case 'search':
             $query = $_GET['q'] ?? '';
