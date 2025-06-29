@@ -11,6 +11,7 @@ use function helpers\get_navbar;
 
 <head>
   <?php get_header(); ?>
+  <title><?= \helpers\env('APP_TITLE') ?> <?= \helpers\setTitle('aprovecha el buen fin') ?></title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">

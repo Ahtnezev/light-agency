@@ -9,8 +9,6 @@
 <meta name="theme-color" content="#000" />
 <meta name="description" content="Compra computadoras de escritorio y laptops al mejor precio. Equipos potentes, marcas reconocidas, envío rápido y soporte garantizado. Encuentra la PC ideal para ti.">
 <meta name="keywords" content="computadoras, laptops, pc de escritorio, comprar computadora, venta de laptops, notebooks, computadoras gamer, computadoras económicas, equipos de cómputo">
-<!-- title -->
-<title><?= \helpers\env('APP_TITLE') ?></title>
 <!-- icon -->
 <link rel="icon" href="<?= asset('images/logo/logo.ico') ?>" type="image/x-icon">
 <!-- bootstrap -->

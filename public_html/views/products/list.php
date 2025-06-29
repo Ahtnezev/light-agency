@@ -5,6 +5,7 @@ use helpers\Money;
 use function helpers\get_header;
 use function helpers\get_footer;
 use function helpers\get_navbar;
+$type = strpos($_SERVER['REQUEST_URI'], 'featured') !== false;
 ?>
 
 <!doctype html>
@@ -12,6 +13,7 @@ use function helpers\get_navbar;
 
 <head>
     <?php get_header(); ?>
+    <title><?= \helpers\env('APP_TITLE') ?> <?= \helpers\setTitle($type ? 'productos destacados' : 'productos más vendidos') ?></title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -21,7 +23,6 @@ use function helpers\get_navbar;
 
         <div class="container mt-4">
             <h2 class="mb-4">
-                <?php $type = strpos($_SERVER['REQUEST_URI'], 'featured') !== false ?>
                 <?php if ($type) : ?>
                     <i class="fas fa-star text-warning"></i>
                     <span>Productos Destacados</span>
