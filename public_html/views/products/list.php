@@ -66,12 +66,18 @@ $type = strpos($_SERVER['REQUEST_URI'], 'featured') !== false;
             </div>
 
             <nav class="mt-4">
-                <ul class="pagination justify-content-center">
-                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                <ul class="pagination justify-content-end">
+                    <?php if ($page > 1): ?>
+                        <li class="page-item"><a class="page-link" href="?page=<?= $page - 1 ?>">Anterior</a></li>
+                    <?php endif; ?>
+                    <?php if ($page < $totalPages): ?>
+                        <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Siguiente</a></li>
+                    <?php endif; ?>
+                    <!-- <?php for ($i = 1; $i <= $totalPages; $i++): ?> -->
+                        <!-- <li class="page-item <?= $i === $page ? 'active' : '' ?>">
                             <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endfor; ?>
+                        </li> -->
+                    <!-- <?php endfor; ?> -->
                 </ul>
             </nav>
         </div>

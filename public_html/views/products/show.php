@@ -19,7 +19,7 @@ use function helpers\get_navbar;
 
     <main class="container single-product my-5">
         <div class="col-12">
-            <h1 class="display-6 mb-4">Información del producto</h1>
+            <h1 class="display-6 mb-4"><i class="fas fa-tag"></i> Información del producto</h1>
             <p class="text-muted">Este producto ha sido visto: <?= (int)$product['views'] ?> veces</p>
         </div>
         <div class="row">
@@ -61,6 +61,7 @@ use function helpers\get_navbar;
             <div class="col-12 col-md-4">
                 <sidebar class="mt-5 mt-md-0">
                     <?php if (!empty($product['category']['name'])): ?>
+                        <i class="fas fa-stream"></i>
                         <strong>Categoría:</strong>
                         <span class="badge bg-danger"><?= e($product['category']['name']) ?></span>
                     <?php endif; ?>
@@ -79,7 +80,7 @@ use function helpers\get_navbar;
                         <?php endif; ?>
                     </div>
                     <div class="alert alert-light shadow mt-4">
-                        <strong>💡 ¿Por qué elegir este modelo?</strong><br>
+                        <strong><i class="fas fa-question-circle"></i> ¿Por qué elegir este modelo?</strong><br>
                         ⚡️ Perfecto para estudiantes, profesionales y quienes buscan un rendimiento equilibrado con diseño moderno.
                     </div>
                 </sidebar>
@@ -97,7 +98,10 @@ use function helpers\get_navbar;
                         
     <?php if (!empty($product['comments'])): ?>
         <div class="container comments-container mt-3 mb-5">
-            <h4 class="mb-4 pb-2">Comentarios de clientes</h4>
+            <h4 class="mb-4 pb-2">
+                <i class="fas fa-comments"></i>
+                <span>Comentarios más recientes</span>
+            </h4>
             <?php foreach ($product['comments'] as $comment): ?>
                 <article class="mb-4 p-3 rounded shadow-sm border bg-light-subtle">
                     <div class="d-flex justify-content-between align-items-center mb-1">

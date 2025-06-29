@@ -47,7 +47,7 @@ class ProductsController {
         $results = [];
         if (!empty(trim($query))) {
             $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
-            $result = Product::searchWithPagination($query, 10, $page);
+            $result = Product::searchWithPagination($query, 15, $page);
     
             $results = $result['data'];
             $totalPages = $result['totalPages'];

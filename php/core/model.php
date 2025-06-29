@@ -128,7 +128,7 @@ abstract class Model
             } else {
                 if ($relation === 'comments') {
                     // 1:N
-                    $stmt = $pdo->prepare("SELECT * FROM comments WHERE product_id = ?");
+                    $stmt = $pdo->prepare("SELECT * FROM comments WHERE product_id = ?  ORDER BY created_at DESC LIMIT 7");
                     $stmt->execute([$record['id']]);
                     $record[$relation] = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 } else {
