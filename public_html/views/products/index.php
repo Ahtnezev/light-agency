@@ -4,8 +4,24 @@ use helpers\Money;
 
 use function helpers\asset;
 
-$products = $products ?? [];
-if (!empty($products)) {
+$products = $products ?? []; ?>
+
+<div class="container mt-4">
+    <h4 class="mb-4">Categorías</h4>
+    <?php if (count($categories) > 0) : ?>
+        <nav class="nav flex-column flex-sm-row bg-dark p-3 rounded mb-5">
+            <?php foreach ($categories as $cat): ?>
+                <a class="nav-link text-white fw-semibold me-3" href="/category/<?= $cat['id'] ?>">
+                    <?= e($cat['name']) ?>
+                </a>
+            <?php endforeach; ?>
+        </nav>
+    <?php else: ?>
+        <div class="alert">No se encontraron nuevas categorías :(</div>
+    <?php endif; ?>
+</div>
+
+<?php if (!empty($products)) {
     foreach ($products as $key => $product) { ?>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">
             <article class="card card-minimal shadow-lg mb-5 fade-in" style="animation-delay: 0.6s;">

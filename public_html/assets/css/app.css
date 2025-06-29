@@ -7,12 +7,14 @@
 /* navbar */
 @import url('./childs/navbar.css');
 
+/* general */
 body {
     font-family: "Nunito Sans", sans-serif;
     background-color: var(--body-bg);
 }
-
-/* general */
+section.bg-light {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
 .pagination {
     .active>.page-link, .page-link.active  {
         border-color: var(--main);
@@ -31,10 +33,23 @@ footer {
 }
 
 @media screen and (min-width: 576px) {
-    .card,  .comments-container {
+    .card, .comments-container {
         margin: auto;
         max-width: 420px;
     }
 }
 
-/* @media screen and (min-width: 768px) {} */
+@media screen and (min-width: 768px) {
+    .card {
+        margin-left: unset;
+        height: 90%;
+    }
+    .single-product {
+        .card-product {
+            height: 100%;
+        }
+    }
+    .comments-container {
+        max-width: 720px;
+    }
+}

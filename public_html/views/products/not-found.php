@@ -15,7 +15,7 @@ use function helpers\get_navbar;
 <body class="d-flex flex-column min-vh-100">
     <?php get_navbar(); ?>
 
-    <main class="main container mt-4">
+    <main class="main min-vh-100 container mt-4">
 
         <div class="container text-center py-5">
             <h2 class="text-danger mb-4">Producto no encontrado</h2>
