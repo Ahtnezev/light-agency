@@ -9,6 +9,10 @@
     }
 }
 
+.card-resumen {
+    min-height: 100%;
+}
+
 .card-minimal {
     background: var(--white);
     border: none;
