@@ -76,11 +76,11 @@ $products = $products ?? []; ?>
                     <li class="page-item"><a class="page-link" href="?page=<?= $page - 1 ?>">Anterior</a></li>
                 <?php endif; ?>
 
-                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <!-- <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                     <li class="page-item <?= $page === $i ? 'active' : '' ?>">
                         <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                     </li>
-                <?php endfor; ?>
+                <?php endfor; ?> -->
 
                 <?php if ($page < $totalPages): ?>
                     <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Siguiente</a></li>

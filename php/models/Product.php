@@ -78,6 +78,12 @@ class Product extends Model
         $pdo = static::getConnection();
         return $pdo->query("SELECT COUNT(*) FROM ".self::$table." WHERE is_featured = 1")->fetchColumn();
     }
+    
+    public static function count() : int
+    {
+        $pdo = static::getConnection();
+        return $pdo->query("SELECT COUNT(*) FROM ".self::$table)->fetchColumn();
+    }
 
     public static function countBestSelling()
     {
