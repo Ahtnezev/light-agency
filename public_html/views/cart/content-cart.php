@@ -54,13 +54,14 @@
         <div class="col-md-4">
             <div class="card card-resumen border-0 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title mb-5">
+                    <h5 class="card-title mb-3">
                         <i class="fas fa-shopping-cart"></i>
                         <span>Resumen de tu carrito</span>
                     </h5>
+                    <p>De contado</p>
                     <p class="mb-2 d-flex justify-content-between">
                         <span>Total:</span>
-                        <strong>$<?= CartHelper::getTotal($cartItems) ?></strong>
+                        <strong>$<?= CartHelper::getTotal($cartItems) ?> MXN</strong>
                     </p>
                     <button class="btn btn-success w-100 mt-3" id="button-process-payment">Proceder al Pago</button>
                 </div>

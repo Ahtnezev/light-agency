@@ -174,4 +174,5 @@ INSERT INTO comments (product_id, name, content, rating) VALUES
 -- 
 INSERT INTO cart (product_id, qty, subtotal, total, paid) VALUES
 (1, 2, 485.22, 562.85, 0),
-(2, 1, 150.00, 174.00, 0);
+(2, 1, 150.00, 174.00, 0),
+(3, 3, 493.00, 905.50, 0);
