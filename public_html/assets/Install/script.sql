@@ -91,6 +91,23 @@ ALTER TABLE products ADD views INT DEFAULT 0 AFTER price;
 -- featured products
 ALTER TABLE products ADD COLUMN is_featured BOOLEAN DEFAULT 0;
 
+-- We can create to more control a cart_details table
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    qty INT NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    paid BOOLEAN DEFAULT 0,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL DEFAULT NULL,
+
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    INDEX(product_id)
+);
+
 -- INTERMEDIO/AVANZADO
 INSERT INTO brands (name, country, website) VALUES
 ('HP', 'USA', 'https://www.hp.com'),
@@ -153,3 +170,8 @@ INSERT INTO comments (product_id, name, content, rating) VALUES
 (8, 'Ernesto Zúñiga', 'Demasiado caro para lo que ofrece.', 3),
 (9, 'Ivonne Morales', 'Una bestia en gaming y productividad.', 5),
 (10, 'Jesús Silva', 'Muy buen desempeño general.', 4);
+
+-- 
+INSERT INTO cart (product_id, qty, subtotal, total, paid) VALUES
+(1, 2, 485.22, 562.85, 0),
+(2, 1, 150.00, 174.00, 0);

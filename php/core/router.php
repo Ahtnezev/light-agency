@@ -2,33 +2,39 @@
 namespace core;
 
 use controllers\CartController;
-use controllers\CategoriesController;
 use controllers\ProductsController;
 
 class Router {
     public function route() {
-    $request = trim($_SERVER['REQUEST_URI'], '/');
+    $request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    // $request = trim($_SERVER['REQUEST_URI'], '/');
 
     // Delete params like: ?x=1
     if (strpos($request, '?') !== false) {
         $request = explode('?', $request)[0];
     }
 
+    // $segments = explode('/', $request);
+    // $main = $segments[0] ?? 'home';
+    // $param = $segments[1] ?? null;
     $segments = explode('/', $request);
-    $main = $segments[0] ?? 'home';
-    $param = $segments[1] ?? null;
+    $route = $segments[0] ?? 'home';
+    $action = $segments[1] ?? null;
+    $param = $segments[2] ?? null;
 
-    switch ($main) {
+    $path = $route . ($action ? "/$action" : '');
+
+    switch ($path) {
         case '':
         case 'home':
-            $controller = new ProductsController();
-            $controller->index();
+            (new ProductsController)->index();
             break;
 
-        case 'product':
-            if ($param && is_numeric($param)) {
+        case (preg_match('/^product\/\d+$/', $path) ? true : false):
+            $productId = (int) $segments[1];
+            if ($productId) {
                 $controller = new ProductsController();
-                $controller->show((int)$param);
+                $controller->show($productId);
             } else {
                 http_response_code(400);
                 include __DIR__ . '/../../public_html/views/products/not-found.php';
@@ -37,18 +43,19 @@ class Router {
             break;
 
         case 'featured':
-            $controller = new ProductsController();
-            $controller->featured();
+            (new ProductsController)->featured();
             break;
 
         case 'best-selling':
-            $controller = new ProductsController();
-            $controller->bestSelling();
+            (new ProductsController)->bestSelling();
             break;
     
         case 'cart':
-            $controller = new CartController();
-            $controller->index();
+            (new CartController)->index();
+            break;
+
+        case 'cart/delete':
+            (new CartController)->delete();
             break;
 
         case 'search':
