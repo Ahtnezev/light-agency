@@ -2,7 +2,7 @@
     <h2 class="mb-4">Carrito de Compras</h2>
 
     <div class="table-responsive">
-        <table class="table align-middle table-bordered table-hover table-striped" id="cart-table">
+        <table class="table align-middle table-hover table-striped" id="cart-table">
             <thead class="table-light">
                 <tr>
                     <th>Producto</th>
@@ -32,7 +32,7 @@
                         <td>HP 240 G8</td>
                         <td>$<?= CartHelper::getSubtotal($cart['subtotal']) ?></td>
                         <td>
-                            <input type="number" class="form-control form-control-sm w-50" min="1" value="<?= $cart['qty'] ?>">
+                            <input id="qty-<?= $cart['qty'] ?>" type="number" disabled class="form-control form-control-sm w-50" min="1" value="<?= $cart['qty'] ?>">
                         </td>
                         <td>$<?= CartHelper::getSubtotal($cart['subtotal']) ?></td>
                          <td>
@@ -67,13 +67,4 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-12">
-            <p id="empty-cart-msg" class="text-muted text-center mt-4" style="display: none;">
-            Tu carrito está vacío 🛒
-            </p>
-        </div>
-    </div>
-
 </div>
