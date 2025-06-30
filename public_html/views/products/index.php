@@ -23,9 +23,9 @@ $products = $products ?? []; ?>
     <?php if (count($categories) > 0) : ?>
         <nav class="nav flex-column flex-sm-row bg-dark p-3 rounded mb-5">
             <?php foreach ($categories as $cat): ?>
-                <a class="nav-link text-white fw-semibold me-3" href="/category/<?= $cat['id'] ?>">
+                <span class="nav-link text-white fw-semibold me-3">
                     <?= e($cat['name']) ?>
-                </a>
+                </span>
             <?php endforeach; ?>
         </nav>
     <?php else: ?>
