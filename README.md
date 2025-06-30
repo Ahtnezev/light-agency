@@ -9,8 +9,8 @@
 * Correo de contacto: Vizenthe13k@outlook.com
 
 * Referencias de trabajo:
-- José 000-000-0000
-- Christian 000-000-0000
+- José Romero +52 442 585 9258
+- Cristian Aguilar +52 443 484 4768
 
 * Nivel de assement: Intermedio
 
