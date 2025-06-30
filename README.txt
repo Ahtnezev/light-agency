@@ -23,6 +23,7 @@ Esto ejecuta el script.sql y creará la base de datos y sus respectivas tablas c
 4. Utilizar sitio web 🎉.
 5. Si deseas ejecutar el comando para visualizar el reporte (log) entonces ejecutar: php public_html/assets/Install/install.php
 6. Para ejecutar el script para generar los 1k comentarios y 200 productos, ejecutar: php public_html/assets/Install/seeder.php
+Nota 💡: sólo se agregó la funcionalidad de eliminar y calcular a 6 y 12 meses del producto en el carrito de compras, de la ruta /cart, más no está implementado la funcionalidad de agregar producto al carrito.
 
 
 Actividades completadas:
