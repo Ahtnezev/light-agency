@@ -13,15 +13,42 @@ function Hidev() {
 }
 Hidev();
 
-$(document).ready(function() {
-    console.log('jquery it works');
-    $('#btn-sales').click(function() {
-        Swal.fire({
-            title: 'Test',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, doloremque!',
-            icon: 'info',
-            confirmButtonText: 'Cerrar',
-            allowOutsideClick: false
-        })
-    })
+$(document).ready(function () {
+  console.log('jquery it works');
+  $('#btn-sales').click(function () {
+    showToast('Test', 'info');
+  });
+  $('#button-add-product-cart').click(function () {
+    displayMessageProductAdded();
+  });
 });
+
+// 
+function displayMessageProductAdded() {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "success",
+    title: "Agregado al carrito!"
+  });
+}
+
+// display a basic sweetalert
+function showToast(text, icon) {
+  Swal.fire({
+    title: text,
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, doloremque!',
+    icon: icon,
+    confirmButtonText: 'Cerrar',
+    allowOutsideClick: false
+  });
+}

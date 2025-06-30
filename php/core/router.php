@@ -1,6 +1,7 @@
 <?php
 namespace core;
 
+use controllers\CartController;
 use controllers\CategoriesController;
 use controllers\ProductsController;
 
@@ -34,6 +35,7 @@ class Router {
                 return;
             }
             break;
+
         case 'featured':
             $controller = new ProductsController();
             $controller->featured();
@@ -43,6 +45,12 @@ class Router {
             $controller = new ProductsController();
             $controller->bestSelling();
             break;
+    
+        case 'cart':
+            $controller = new CartController();
+            $controller->index();
+            break;
+
         case 'search':
             $query = $_GET['q'] ?? '';
             $controller = new ProductsController();

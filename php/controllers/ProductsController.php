@@ -5,12 +5,13 @@ use models\Category;
 use models\Product;
 
 class ProductsController {
+    protected int $limit = 10;
     
     /**
      * Display all products 
     */
     public function index() {
-        $limit = 10;
+        $limit = $this->limit;
         $page = $this->pullPageNumber();
         $total = Product::countAll();
         $totalPages = (int) ceil($total / $limit);
@@ -61,8 +62,8 @@ class ProductsController {
     */
     public function featured()
     {
-        $limit = 10;
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $limit = $this->limit;
+        $page = $this->pullPageNumber();
         $total = Product::countFeatured();
         $totalPages = ceil($total / $limit);
         if ($page < 1 || $page > $totalPages) $page = 1;
@@ -76,8 +77,8 @@ class ProductsController {
     */
     public function bestSelling()
     {
-        $limit = 10;
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $limit = $this->limit;
+        $page = $this->pullPageNumber();
         $total = Product::countBestSelling();
         $totalPages = ceil($total / $limit);
         if ($page < 1 || $page > $totalPages) $page = 1;

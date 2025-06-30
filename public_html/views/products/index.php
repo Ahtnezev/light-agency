@@ -59,7 +59,7 @@ $products = $products ?? []; ?>
                         <?= e($product['specs']) ?>
                     </p>
                 </div> <!-- card-body -->
-                <div class="card-footer">
+                <div class="card-footer py-3">
                     <div class="float-end">
                         <a href="/product/<?= $product['id'] ?>" class="btn btn-sm btn-success btn-modern my-2" target="_blank">
                             <i class="fas fa-eye me-2"></i>Ver más
