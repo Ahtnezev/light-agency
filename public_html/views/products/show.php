@@ -25,7 +25,7 @@ use function helpers\get_navbar;
         <div class="row">
             <div class="col-12 col-md-8">
                 <?php if (!empty($product)): ?>
-                    <article class="card card-product shadow rounded-4 border-0 pt-4">
+                    <article class="card card-product shadow rounded-4 border-0 pt-4 mb-sm-5 mb-md-0">
                         <div class="row g-0">
                             <div class="col-12">
                                 <img src="<?= asset('images/products/' . e($product['image_url'])) ?>" class="img img-fluid rounded-start w-100 h-100 object-fit-cover" alt="<?= e($product['specs']) ?>">
@@ -33,7 +33,10 @@ use function helpers\get_navbar;
                             <div class="col-12">
                                 <div class="card-body p-4">
                                     <div class="mb-3">
-                                        <span class="badge bg-success float-end">4.5 ★</span>
+                                        <a href="javascript:void(0);" id="button-add-product-cart" class="alert-link alert-danger fs-5">
+                                            <i class="fas fa-cart-plus float-end"></i>
+                                        </a>
+                                        <span class="badge bg-success">4.5 ★</span>
                                         <!-- <span class="text-muted ms-2">Valoración promedio</span> -->
                                     </div>
                                     <h2 class="card-title mb-3"><?= e($product['model']['name']) ?></h2>
