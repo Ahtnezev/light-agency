@@ -61,7 +61,7 @@
                     <p>De contado</p>
                     <p class="mb-2 d-flex justify-content-between">
                         <span>Total:</span>
-                        <strong>$<?= CartHelper::getTotal($cartItems) ?></strong>
+                        <strong>$<?= CartHelper::getTotal($cartItems) ?> MXN</strong>
                     </p>
                     <button class="btn btn-success w-100 mt-3" id="button-process-payment">Proceder al Pago</button>
                 </div>
